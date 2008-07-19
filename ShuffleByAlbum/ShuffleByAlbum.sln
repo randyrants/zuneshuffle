@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShuffleByAlbum", "ShuffleByAlbum\ShuffleByAlbum.csproj", "{49EEA2B6-86A2-4023-8E43-C0BC41CAEB56}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs03.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ShuffleByAlbum\\Content\\Content.contentproj
+		SccProjectTopLevelParentUniqueName1 = ShuffleByAlbum\\ShuffleByAlbum.csproj
+		SccProjectName1 = ShuffleByAlbum/Content
+		SccLocalPath1 = ShuffleByAlbum\\Content
+		SccProjectUniqueName2 = ShuffleByAlbum\\ShuffleByAlbum.csproj
+		SccProjectName2 = ShuffleByAlbum
+		SccLocalPath2 = ShuffleByAlbum
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Zune = Debug|Zune
+		Release|Zune = Release|Zune
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49EEA2B6-86A2-4023-8E43-C0BC41CAEB56}.Debug|Zune.ActiveCfg = Debug|Zune
+		{49EEA2B6-86A2-4023-8E43-C0BC41CAEB56}.Debug|Zune.Build.0 = Debug|Zune
+		{49EEA2B6-86A2-4023-8E43-C0BC41CAEB56}.Debug|Zune.Deploy.0 = Debug|Zune
+		{49EEA2B6-86A2-4023-8E43-C0BC41CAEB56}.Release|Zune.ActiveCfg = Release|Zune
+		{49EEA2B6-86A2-4023-8E43-C0BC41CAEB56}.Release|Zune.Build.0 = Release|Zune
+		{49EEA2B6-86A2-4023-8E43-C0BC41CAEB56}.Release|Zune.Deploy.0 = Release|Zune
+		{DCC0884E-F7FF-49D2-A34C-63688EEF27F6}.Debug|Zune.ActiveCfg = Debug|Zune
+		{DCC0884E-F7FF-49D2-A34C-63688EEF27F6}.Release|Zune.ActiveCfg = Release|Zune
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
