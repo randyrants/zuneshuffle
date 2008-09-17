@@ -38,7 +38,6 @@ namespace ShuffleByAlbum
     // Media/player members
     AlbumCollection albumCollection;
     SongCollection songCollection;
-    MediaQueue mediaQueue;
     bool wasPausePressed;
 
     // High level members, set by Update, displayed by Draw
@@ -62,12 +61,11 @@ namespace ShuffleByAlbum
       // load the media library and initialize a media queue
       MediaLibrary mediaLibrary = new MediaLibrary();
       albumCollection = mediaLibrary.Albums;
-      mediaQueue = new MediaQueue();
       wasPausePressed = false;
 
       // initialize the member variables
       currentAlbum = "Shuffle by Album";
-      currentArtist = "version 0.9.1 - April CTP";
+      currentArtist = "version 0.9.5 - XNA 3.0.10825.0 (Beta)";
       currentSong = "press play to begin";
       currentVolume = "";
       currentElapsedTime = "00:00";
@@ -192,7 +190,7 @@ namespace ShuffleByAlbum
             StopStartPlay();
           }
           else {
-            mediaQueue.MoveNext();
+            MediaPlayer.MoveNext();
           }
         }
       }
@@ -202,10 +200,13 @@ namespace ShuffleByAlbum
       else if ((leftKey) || (zunePadState.Flick.X < -FlickLength)) {
         if (MediaPlayer.State != MediaState.Stopped) {
           if (MediaPlayer.PlayPosition.TotalSeconds <= 5) {
-            mediaQueue.MovePrevious();
+            MediaPlayer.MovePrevious();
           }
           else {
-            MediaPlayer.PlayPosition = new TimeSpan(0);
+            // Restart this song
+            int index = MediaPlayer.Queue.ActiveSongIndex;
+            MediaPlayer.Stop();
+            MediaPlayer.Play(songCollection, index);
           }
         }
       }
@@ -216,10 +217,10 @@ namespace ShuffleByAlbum
         case MediaState.Playing:
           currentState = "";
           currentElapsedTime = String.Format("{0,2:00}:{1,2:00}", MediaPlayer.PlayPosition.Minutes, MediaPlayer.PlayPosition.Seconds);
-          remainingTime = mediaQueue.ActiveSong.Duration - MediaPlayer.PlayPosition;
+          remainingTime = MediaPlayer.Queue.ActiveSong.Duration - MediaPlayer.PlayPosition;
           currentRemianingTime = String.Format("-{0,2:00}:{1,2:00}", remainingTime.Minutes, remainingTime.Seconds);
-          currentSong = mediaQueue.ActiveSong.Name;
-          currentTrack = String.Format("Track: {0,2:00} of {1,2:00}", mediaQueue.ActiveSongIndex + 1, mediaQueue.Count);
+          currentSong = MediaPlayer.Queue.ActiveSong.Name;
+          currentTrack = String.Format("Track: {0,2:00} of {1,2:00}", MediaPlayer.Queue.ActiveSongIndex + 1, MediaPlayer.Queue.Count);
           break;
         case MediaState.Paused:
           if ((!wasPausePressed) && (MediaPlayer.PlayPosition.TotalSeconds == 0)) {
@@ -228,11 +229,11 @@ namespace ShuffleByAlbum
           }
           currentState = "-- paused --";
           currentElapsedTime = String.Format("{0,2:00}:{1,2:00}", MediaPlayer.PlayPosition.Minutes, MediaPlayer.PlayPosition.Seconds);
-          remainingTime = mediaQueue.ActiveSong.Duration - MediaPlayer.PlayPosition;
+          remainingTime = MediaPlayer.Queue.ActiveSong.Duration - MediaPlayer.PlayPosition;
           currentRemianingTime = String.Format("-{0,2:00}:{1,2:00}", remainingTime.Minutes, remainingTime.Seconds);
 
-          currentSong = mediaQueue.ActiveSong.Name;
-          currentTrack = String.Format("Track: {0,2:00} of {1,2:00}", mediaQueue.ActiveSongIndex + 1, mediaQueue.Count);
+          currentSong = MediaPlayer.Queue.ActiveSong.Name;
+          currentTrack = String.Format("Track: {0,2:00} of {1,2:00}", MediaPlayer.Queue.ActiveSongIndex + 1, MediaPlayer.Queue.Count);
           break;
         default:
           currentState = "-- stopped --";
@@ -280,7 +281,7 @@ namespace ShuffleByAlbum
       spriteBatch.Draw(highlightAlbumArt, new Rectangle(0, 221, 240, 2), Color.White);
       if (MediaPlayer.State == MediaState.Playing) {
         int x = 0;
-        x = (((int)MediaPlayer.PlayPosition.TotalSeconds * 100 / (int)mediaQueue.ActiveSong.Duration.TotalSeconds) * 240 / 100) - 20;
+        x = (((int)MediaPlayer.PlayPosition.TotalSeconds * 100 / (int)MediaPlayer.Queue.ActiveSong.Duration.TotalSeconds) * 240 / 100) - 20;
         spriteBatch.Draw(cursorTexture, new Rectangle(x, 219, 20, 6), Color.White);
       }
       spriteBatch.End();
@@ -349,7 +350,7 @@ namespace ShuffleByAlbum
     }
 
     private bool IsLastSong() {
-      return (mediaQueue.ActiveSongIndex + 1 == mediaQueue.Count);
+      return (MediaPlayer.Queue.ActiveSongIndex + 1 == MediaPlayer.Queue.Count);
     }
   }
 }
