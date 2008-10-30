@@ -65,7 +65,7 @@ namespace ShuffleByAlbum
 
       // initialize the member variables
       currentAlbum = "Shuffle by Album";
-      currentArtist = "version 0.9.5 - XNA 3.0.10825.0 (Beta)";
+      currentArtist = "version 1.0 - XNA 3.0.11010.0";
       currentSong = "press play to begin";
       currentVolume = "";
       currentElapsedTime = "00:00";
