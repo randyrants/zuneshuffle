@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("Shuffle by Album")]
 [assembly: AssemblyDescription("A Zune application that will randomly select an album, play all of its tracks, and move on to the next album.")]
 [assembly: AssemblyCompany("RandyRants.com")]
-[assembly: AssemblyCopyright("Copyright 2008 RandyRants.com")]
+[assembly: AssemblyCopyright("Copyright 2008-2010 RandyRants.com")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,4 +29,4 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.0.0")]
