@@ -58,6 +58,9 @@ namespace ShuffleByAlbum
     /// and initialize them as well.
     /// </summary>
     protected override void Initialize() {
+      // set to be 30 fps 
+      TargetElapsedTime = TimeSpan.FromSeconds(1 / 30.0);
+      
       // load the media library and initialize a media queue
       MediaLibrary mediaLibrary = new MediaLibrary();
       albumCollection = mediaLibrary.Albums;
@@ -65,7 +68,7 @@ namespace ShuffleByAlbum
 
       // initialize the member variables
       currentAlbum = "Shuffle by Album";
-      currentArtist = "version 1.0 - XNA 3.0.11010.0";
+      currentArtist = "version 1.1 - XNA 3.1.10527.0";
       currentSong = "press play to begin";
       currentVolume = "";
       currentElapsedTime = "00:00";
